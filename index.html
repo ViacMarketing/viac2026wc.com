@@ -692,18 +692,18 @@
       "Please send me the World Cup 2026 Property Playbook."
     );
 
-    // Trigger PDF download directly (not blocked by pop-up blockers)
-    const a = document.createElement("a");
-    a.href = "WC2026-VIAC.pdf";
-    a.download = "VIAC-World-Cup-2026-Playbook.pdf";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    // Send the lead info via email first (captures the lead)
+    window.location.href = "mailto:vacation@viac-miami.com?subject=" + subject + "&body=" + body;
 
-    // Send the lead info via email after a short delay
+    // Then trigger PDF download after a short delay
     setTimeout(function() {
-      window.location.href = "mailto:vacation@viac-miami.com?subject=" + subject + "&body=" + body;
-    }, 500);
+      const a = document.createElement("a");
+      a.href = "WC2026-VIAC.pdf";
+      a.download = "VIAC-World-Cup-2026-Playbook.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }, 1000);
   }
 
   calc();
